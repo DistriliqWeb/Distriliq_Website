@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon | Distriliq</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #221f1f;
+      color: #fff;
+      text-align: center;
+      padding: 24px;
+    }
+    .page {
+      max-width: 700px;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    p {
+      color: #ccc;
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+    a {
+      display: inline-block;
+      background: #fffdfd;
+      color: #000;
+      padding: 14px 28px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    a:hover {
+      background: #Ff6600;
+    }
+    .notify-form {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    .notify-input {
+      flex: 1 1 280px;
+      min-width: 280px;
+      max-width: 420px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 16px;
+    }
+    .notify-input::placeholder {
+      color: rgba(255,255,255,0.65);
+    }
+    .notify-button {
+      padding: 14px 24px;
+      border: none;
+      border-radius: 12px;
+      background: #faf9f8;
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .notify-button:hover {
+      background: #faf9f8;
+    }
+    .notify-message {
+      margin-top: 18px;
+      color: #d4a537;
+      font-size: 15px;
+      min-height: 20px;
+    }
+    #age-gate-overlay {
+      position:fixed;
+      inset:0;
+      z-index:99999;
+      background:rgba(0,0,0,0.96);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .age-gate-panel {
+      max-width:560px;
+      width:100%;
+      background:rgba(8,8,8,0.95);
+      border:1px solid rgba(212,165,55,0.25);
+      border-radius:24px;
+      padding:36px 30px;
+      text-align:center;
+      box-shadow:0 30px 80px rgba(0,0,0,0.5);
+    }
+
+    .age-gate-panel h2 {
+      font-size:36px;
+      margin-bottom:18px;
+      color:#fff;
+    }
+
+    .age-gate-panel p {
+      color:#ddd;
+      margin-bottom:28px;
+      line-height:1.7;
+      font-size:18px;
+    }
+
+    .age-gate-buttons {
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .age-gate-button {
+      min-width:160px;
+      padding:14px 24px;
+      border-radius:999px;
+      border:none;
+      font-weight:700;
+      cursor:pointer;
+      transition:background 0.25s ease, color 0.25s ease;
+    }
+
+    .age-gate-accept {
+      background:#d4a537;
+      color:#000;
+    }
+
+    .age-gate-deny {
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.45);
+      color:#fff;
+    }
+
+    .age-gate-deny:hover,
+    .age-gate-accept:hover {
+      opacity:0.95;
+    }
+  </style>
+</head>
+<body>
+  <div id="age-gate-overlay">
+    <div class="age-gate-panel">
+      <h2>18+ Only</h2>
+      <p>Distriliq delivers premium alcoholic beverages. You must be 18 years or older to enter this website.</p>
+      <div class="age-gate-buttons">
+        <button id="age-gate-accept" class="age-gate-button age-gate-accept">I am 18+</button>
+        <button id="age-gate-deny" class="age-gate-button age-gate-deny">Leave Site</button>
+      </div>
+    </div>
+  </div>
+  <div class="page">
+    <h1>Coming Soon</h1>
+    <p>Our products page is under construction. Check back soon for the full Distriliq product catalogue.</p>
+        </p>Or let us know your email to be notified when it's ready!</p>
+    <form class="notify-form" id="notifyForm">
+      <input class="notify-input" id="notifyEmail" type="email" placeholder="Enter your email address" required>
+      <button class="notify-button" type="submit">Notify Me</button>
+    </form>
+    <div class="notify-message" id="notifyMessage" aria-live="polite"></div>
+    <a href="index.html">Back to Home</a>
+  </div>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+    (function(){
+      const overlay = document.getElementById('age-gate-overlay');
+      if (!overlay) return;
+      const accepted = localStorage.getItem('distriliqAgeConfirmed');
+      if (accepted === 'true') {
+        overlay.style.display = 'none';
+        return;
+      }
+      document.getElementById('age-gate-accept').addEventListener('click', function() {
+        localStorage.setItem('distriliqAgeConfirmed','true');
+        overlay.style.display = 'none';
+      });
+      document.getElementById('age-gate-deny').addEventListener('click', function() {
+        window.location.href = 'https://www.google.com';
+      });
+    })();
+
+    (function(){
+      const form = document.getElementById('notifyForm');
+      const emailInput = document.getElementById('notifyEmail');
+      const message = document.getElementById('notifyMessage');
+
+      if (form && emailInput && message) {
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+          const email = emailInput.value.trim();
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            message.textContent = 'Please enter a valid email address.';
+            return;
+          }
+
+          message.textContent = 'Sending your request...';
+
+          Email.send({
+            Host: 'mail.distriliq.com',
+            Username: 'notify@distriliq.com',
+            Password: 'YOUR_SMTP_PASSWORD',
+            To: email,
+            From: 'notify@distriliq.com',
+            Subject: 'Notify me when Distriliq products are live',
+            Body: `Hi,<br><br>Please notify me when the Distriliq products page is live.<br><br>Thanks!`
+          }).then(function(response) {
+            if (response === 'OK') {
+              message.textContent = 'Notification request sent successfully.';
+              emailInput.value = '';
+            } else {
+              message.textContent = 'Unable to send request right now. Please try again later.';
+              console.error('SMTP send error:', response);
+            }
+          }).catch(function(error) {
+            message.textContent = 'Unable to send request right now. Please try again later.';
+            console.error('SMTP send exception:', error);
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

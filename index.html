@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Distriliq "We Deliver Daily"</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Inter', sans-serif;
+      background:#fff;
+      color:#111;
+      line-height:1.6;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:min(92%, 1400px);
+      max-width:1400px;
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    header{
+      background:#fcfbfb;
+      color:#f60;
+      padding:18px 0;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .navbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:32px;
+      flex-wrap:wrap;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-size:32px;
+      font-weight:700;
+      color:#Ff6600;
+      font-family:'Playfair Display', serif;
+    }
+
+    .logo a{ display:inline-block; }
+
+    .logo img{
+      display:block;
+      height:52px;
+      max-height:52px;
+      width:auto;
+      object-fit:contain;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    .logo a + a{ margin-left:12px; }
+
+    .logo-text{
+      display:inline-block;
+      line-height:1;
+      letter-spacing:0.04em;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:35px;
+      font-size:15px;
+      font-weight:500;
+      align-items:center;
+    }
+
+    .nav-links a,
+    .nav-links .dropdown-label{
+      position:relative;
+      color:#111 !important;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      padding:10px 14px;
+      border-radius:12px;
+      transition:color 0.25s ease, background 0.25s ease;
+      white-space:nowrap;
+      line-height:1.2;
+    }
+
+    .nav-item .dropdown-menu a{
+      display:block;
+      padding:12px 18px;
+      color:#111;
+      font-weight:500;
+      white-space:nowrap;
+      text-decoration:none;
+    }
+
+    .nav-links a:hover,
+    .nav-links .dropdown-label:hover{
+      color:#fff;
+      background:#Ff6600;
+    }
+
+    .nav-item .dropdown-menu a:hover{
+      background:#fff4e6;
+      color:#Ff6600;
+    }
+
+    .nav-links a.active,
+    .nav-links .dropdown-label.active{
+      color:#fff;
+      background:#Ff6600;
+      border-radius:12px;
+      padding:10px 14px;
+    }
+
+    .nav-item{
+      position:relative;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:100%;
+      left:0;
+      min-width:180px;
+      background:#fcfbfb;
+      border-radius:16px;
+      box-shadow:0 16px 40px rgba(0,0,0,0.12);
+      overflow:hidden;
+      text-align:left;
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(8px);
+      transition:opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+      z-index:1100;
+    }
+
+    .nav-item:hover .dropdown-menu,
+    .nav-item:focus-within .dropdown-menu{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:12px 18px;
+      color:#111;
+      font-weight:500;
+      white-space:nowrap;
+    }
+
+    .dropdown-menu a:hover{
+      background:#fff4e6;
+      color:#Ff6600;
+    }
+
+    .dropdown-label::after{
+      content:'▾';
+      font-size:10px;
+      display:inline-block;
+      margin-left:4px;
+      line-height:1;
+    }
+
+    .menu-toggle{
+      display:none;
+      position:relative;
+      z-index:1201;
+      background:#Ff6600;
+      border:1px solid #Ff6600;
+      color:#111;
+      cursor:pointer;
+      width:44px;
+      height:44px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      padding:0;
+      border-radius:14px;
+      transition:background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .menu-toggle:hover{
+      background:rgba(255,102,0,0.08);
+      border-color:rgba(255,102,0,0.3);
+    }
+
+    .menu-toggle span{
+      display:block;
+      width:24px;
+      height:2px;
+      background:#111;
+      border-radius:2px;
+      transition:transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .menu-toggle span:not(:last-child){
+      margin-bottom:6px;
+    }
+
+    .menu-toggle.open span:nth-child(1){
+      transform:translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.open span:nth-child(2){
+      opacity:0;
+    }
+
+    .menu-toggle.open span:nth-child(3){
+      transform:translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:35px;
+      align-items:center;
+    }
+
+    .nav-links.mobile-open,
+    body.nav-open .nav-links{
+      transform:translateY(0);
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+    }
+
+    body.is-mobile .menu-toggle{
+      display:flex;
+    }
+
+    body.is-mobile .nav-links{
+      position:fixed;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:flex-start;
+      gap:20px;
+      padding:100px 24px 24px;
+      background:#fff;
+      transform:translateY(-110%);
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:transform 0.35s ease, opacity 0.35s ease, visibility 0.35s ease;
+      z-index:1100;
+      box-shadow:0 14px 40px rgba(0,0,0,0.15);
+    }
+
+    body.is-mobile .nav-links a,
+    body.is-mobile .nav-links .dropdown-label,
+    body.is-mobile .nav-item .dropdown-menu a{
+      color:#111 !important;
+    }
+
+    body.is-mobile.nav-open .nav-links{
+      transform:translateY(0);
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+    }
+
+    body.is-mobile .nav-links a,
+    body.is-mobile .nav-links .dropdown-label{
+      width:100%;
+      justify-content:flex-start;
+      text-align:left;
+      font-size:18px;
+      padding:16px 0;
+    }
+
+    body.is-mobile .nav-item .dropdown-menu a{
+      width:100%;
+      padding-left:32px;
+    }
+
+    .btn{
+      background:#Ff6600;
+      color:#000;
+      padding:14px 28px;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      transition:0.3s;
+      display:inline-block;
+      white-space:nowrap;
+    }
+
+    .btn:hover{
+      background:#Ff6600;
+    }
+
+    #age-gate-overlay {
+      position:fixed;
+      inset:0;
+      z-index:99999;
+      background:rgba(0,0,0,0.96);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .age-gate-panel {
+      max-width:560px;
+      width:100%;
+      background:rgba(8,8,8,0.95);
+      border:1px solid rgba(212,165,55,0.25);
+      border-radius:24px;
+      padding:36px 30px;
+      text-align:center;
+      box-shadow:0 30px 80px rgba(0,0,0,0.5);
+    }
+
+    .age-gate-panel h2 {
+      font-size:36px;
+      margin-bottom:18px;
+      color:#fff;
+    }
+
+    .age-gate-panel p {
+      color:#ddd;
+      margin-bottom:28px;
+      line-height:1.7;
+      font-size:18px;
+    }
+
+    .age-gate-buttons {
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .age-gate-button {
+      min-width:160px;
+      padding:14px 24px;
+      border-radius:999px;
+      border:none;
+      font-weight:700;
+      cursor:pointer;
+      transition:background 0.25s ease, color 0.25s ease;
+    }
+
+    .age-gate-accept {
+      background:#Ff6600;
+      color:#000;
+    }
+
+    .age-gate-deny {
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.45);
+      color:#fff;
+    }
+
+    .age-gate-deny:hover,
+    .age-gate-accept:hover {
+      opacity:0.95;
+    }
+
+    /* HERO */
+
+    .hero{
+      height:95vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+      url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1600');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      color:#fff;
+    }
+
+    .hero-content{
+      max-width:700px;
+    }
+
+    .hero h1{
+      font-size:clamp(3.2rem, 6vw, 5rem);
+      line-height:1.05;
+      margin-bottom:30px;
+      font-family:'Playfair Display', serif;
+      max-width:calc(100% - 0px);
+    }
+
+    .gold{
+      color:#Ff6600;
+    }
+
+    .hero p{
+      font-size:clamp(1rem, 1.1vw, 1.25rem);
+      margin-bottom:35px;
+      color:#ddd;
+      max-width:720px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:20px;
+    }
+
+    .btn-outline{
+      border:1px solid #fff;
+      color:#fff;
+      padding:14px 28px;
+    }
+
+    .btn-outline:hover{
+      background:#fff;
+      color:#000;
+    }
+
+    .customer-form-section{
+      padding:80px 0;
+      background:#fff;
+    }
+
+    .customer-form{
+      max-width:980px;
+      margin:auto;
+      background:#fff;
+      border-radius:20px;
+      padding:32px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(240px, 1fr));
+      gap:24px;
+    }
+
+    .form-field{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      font-weight:500;
+      color:#333;
+    }
+
+    .form-field.full-width{
+      grid-column:1 / -1;
+    }
+
+    .form-field span{
+      font-size:14px;
+      color:#444;
+    }
+
+    .form-field input,
+    .form-field textarea,
+    .form-field select{
+      width:100%;
+      padding:14px 16px;
+      border:1px solid #ccc;
+      border-radius:12px;
+      font-size:16px;
+      font-family:'Inter',sans-serif;
+      color:#111;
+      background:#fafafa;
+    }
+
+    .form-field select:focus,
+    .form-field input:focus,
+    .form-field textarea:focus{
+      outline:none;
+      border-color:#Ff6600;
+      box-shadow:0 0 0 3px rgba(255,102,0,0.15);
+    }
+
+    .form-actions{
+      margin-top:28px;
+      text-align:right;
+    }
+
+    .form-actions .btn{
+      padding:16px 30px;
+      border-radius:999px;
+    }
+
+    /* FEATURES */
+
+    .features{
+      padding:90px 0;
+      background:#f8f8f8;
+    }
+
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:40px;
+      text-align:center;
+    }
+
+    .feature-box{
+      padding:30px;
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .feature-box h3{
+      margin:20px 0 10px;
+      font-size:22px;
+    }
+
+    /* PRODUCTS */
+
+    .products{
+      padding:100px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h2{
+      font-size:52px;
+      font-family:'Playfair Display', serif;
+    }
+
+    .section-title p{
+      color:#777;
+      margin-top:15px;
+    }
+
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:24px;
+      align-items:start;
+    }
+
+    .product-card{
+      overflow:hidden;
+      border-radius:18px;
+      background:#fff;
+      box-shadow:0 14px 32px rgba(0,0,0,0.08);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+
+    .product-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 18px 40px rgba(0,0,0,0.12);
+    }
+
+    .product-card img{
+      width:100%;
+      aspect-ratio:4 / 3;
+      object-fit:cover;
+      display:block;
+    }
+
+    .product-content{
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      flex:1;
+    }
+
+    .product-content h3{
+      font-size:22px;
+      margin-bottom:0;
+    }
+
+    .product-content p{
+      color:#555;
+      line-height:1.7;
+      margin:0;
+      flex:1;
+    }
+
+    /* BRANDS */
+
+    .brands{
+      background:#08101f;
+      color:#fff;
+      padding:90px 0;
+      text-align:center;
+    }
+
+    .brands h2{
+      font-size:48px;
+      margin-bottom:50px;
+      font-family:'Playfair Display', serif;
+    }
+
+    .brand-logos,
+    .supplier-logos{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:26px;
+      align-items:center;
+      margin:0 auto;
+      max-width:1000px;
+    }
+
+    .brand-logos a,
+    .supplier-logos a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:160px;
+      min-height:70px;
+      padding:8px 12px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.06);
+      text-decoration:none;
+    }
+
+    .brand-logos img,
+    .supplier-logos img{
+      max-height:56px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+      filter:brightness(1) saturate(1);
+    }
+
+    .logo-item{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:8px;
+    }
+
+    .logo-label{
+      display:block;
+      color:#Ff6600;
+      font-weight:700;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:0.6px;
+    }
+
+    .device-indicator{
+      position:fixed;
+      bottom:16px;
+      right:16px;
+      z-index:2000;
+      background:rgba(0,0,0,0.75);
+      color:#fff;
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:0.3px;
+      display:none;
+      box-shadow:0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .is-mobile .device-indicator{
+      display:block;
+    }
+
+    .chatbot-widget{
+      position:fixed;
+      right:24px;
+      bottom:24px;
+      width:360px;
+      max-width:92vw;
+      font-family:'Inter', sans-serif;
+      z-index:2001;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:12px;
+    }
+
+    .chatbot-button{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      border:none;
+      background:#Ff6600;
+      color:#111;
+      box-shadow:0 18px 40px rgba(0,0,0,0.25);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:26px;
+      transition:transform 0.25s ease, background 0.25s ease;
+    }
+
+    .chatbot-button:hover{
+      transform:scale(1.05);
+      background:#Ff6600;
+    }
+
+    .chatbot-panel{
+      width:100%;
+      max-height:520px;
+      background:#111;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 18px 60px rgba(0,0,0,0.35);
+      display:none;
+      flex-direction:column;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .chatbot-panel.open{
+      display:flex;
+    }
+
+    .chatbot-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:18px 20px;
+      background:#161616;
+      color:#fff;
+    }
+
+    .chatbot-header h3{
+      margin:0;
+      font-size:16px;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+    }
+
+    .chatbot-close{
+      border:none;
+      background:transparent;
+      color:#fff;
+      font-size:20px;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    .chatbot-messages{
+      flex:1;
+      padding:16px 20px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      overflow-y:auto;
+      background:#0d0d0d;
+    }
+
+    .chatbot-message{
+      max-width:84%;
+      padding:14px 16px;
+      border-radius:18px;
+      line-height:1.6;
+      font-size:14px;
+      word-break:break-word;
+    }
+
+    .chatbot-message.user{
+      align-self:flex-end;
+      background:linear-gradient(135deg, #Ff6600, #ffa63a);
+      color:#111;
+    }
+
+    .chatbot-message.bot{
+      align-self:flex-start;
+      background:rgba(255,255,255,0.08);
+      color:#f5f5f5;
+    }
+
+    .chatbot-suggestions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:0 20px 12px;
+    }
+
+    .chatbot-suggestion{
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+      border:none;
+      border-radius:999px;
+      padding:10px 14px;
+      cursor:pointer;
+      font-size:13px;
+      transition:background 0.2s ease;
+    }
+
+    .chatbot-suggestion:hover{
+      background:rgba(255,255,255,0.14);
+    }
+
+    .chatbot-input-bar{
+      display:flex;
+      gap:10px;
+      padding:12px 16px 16px;
+      background:#111;
+    }
+
+    .chatbot-input{
+      flex:1;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.12);
+      background:#0d0d0d;
+      color:#fff;
+      padding:12px 16px;
+      font-size:14px;
+      outline:none;
+    }
+
+    .chatbot-input::placeholder{
+      color:#888;
+    }
+
+    .chatbot-submit{
+      border:none;
+      background:#Ff6600;
+      color:#111;
+      border-radius:999px;
+      padding:12px 16px;
+      cursor:pointer;
+      font-weight:700;
+      transition:background 0.2s ease;
+    }
+
+    .chatbot-submit:hover{
+      background:#d96800;
+    }
+
+    @media(max-width:700px){
+      .chatbot-widget{
+        right:12px;
+        bottom:12px;
+        width:100%;
+      }
+
+      .chatbot-panel{
+        width:100%;
+        max-height:80vh;
+      }
+    }
+
+    .is-mobile .hero{
+      height:auto;
+      padding:100px 0 60px;
+    }
+
+    .is-mobile .hero-content{
+      text-align:center;
+    }
+
+    .is-mobile .hero-buttons{
+      flex-direction:column;
+      align-items:center;
+      gap:16px;
+    }
+
+    .is-mobile .hero-buttons .btn,
+    .is-mobile .hero-buttons .btn-outline{
+      width:100%;
+      max-width:320px;
+    }
+
+    .is-mobile .product-grid{
+      gap:18px;
+    }
+
+    .is-mobile .brand-logos,
+    .is-mobile .supplier-logos{
+      justify-content:center;
+      gap:12px;
+    }
+
+    .is-mobile .brand-logos a,
+    .is-mobile .supplier-logos a{
+      min-width:auto;
+      width:calc(50% - 12px);
+      justify-content:center;
+      padding:12px 10px;
+    }
+
+    .supplier-section{
+      margin-top:60px;
+    }
+
+    .supplier-section h3{
+      margin-bottom:28px;
+      font-size:28px;
+      font-family:'Playfair Display', serif;
+      color:#fff;
+    }
+
+    /* ABOUT */
+
+    .about{
+      padding:100px 0;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:16px;
+    }
+
+    .about h2{
+      font-size:54px;
+      margin-bottom:25px;
+      font-family:'Playfair Display', serif;
+    }
+
+    .about ul{
+      margin:30px 0;
+      padding-left:20px;
+    }
+
+    .about li{
+      margin-bottom:12px;
+    }
+
+    /* CTA */
+
+    .cta{
+      background:
+      linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+      url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1600');
+      background-size:cover;
+      background-position:center;
+      color:#fff;
+      padding:100px 0;
+      text-align:center;
+    }
+
+    .cta h2{
+      font-size:56px;
+      margin-bottom:25px;
+      font-family:'Playfair Display', serif;
+    }
+
+    .services{
+      padding:100px 0;
+      background:#fff;
+    }
+
+    .team-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:30px;
+      margin-top:40px;
+    }
+
+    .team-member{
+      text-align:center;
+      background:#fff;
+      border-radius:16px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      overflow:hidden;
+    }
+
+    .team-member img{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .team-member h3{
+      margin:20px 0 10px;
+      font-size:22px;
+    }
+
+    .team-member p{
+      color:#777;
+      margin-bottom:25px;
+      padding:0 20px;
+    }
+
+    .team-location{
+      display:none;
+      opacity:0;
+      max-height:0;
+      overflow:hidden;
+      transition:opacity 0.35s ease, max-height 0.35s ease;
+    }
+
+    .team-location.active{
+      display:block;
+      opacity:1;
+      max-height:2400px;
+    }
+
+    .services-instruction{
+      margin-top:24px;
+      color:#444;
+      font-size:16px;
+      text-align:center;
+      max-width:720px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#990000;
+      color:#ccc;
+      padding:70px 0 30px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:40px;
+      margin-bottom:40px;
+    }
+
+    footer h4{
+      color:#fff;
+      margin-bottom:20px;
+    }
+
+    footer a{
+      color:#ccc !important;
+      transition:color 0.25s ease;
+    }
+
+    footer a:hover{
+      color:#Ff6600;
+    }
+
+    footer ul{
+      list-style:none;
+    }
+
+    footer li{
+      margin-bottom:10px;
+    }
+
+    .copyright{
+      text-align:center;
+      border-top:1px solid #222;
+      padding-top:25px;
+      font-size:14px;
+      color:#777;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:1000px){
+
+      .navbar{
+        justify-content:space-between;
+      }
+
+      .hero h1{
+        font-size:52px;
+      }
+
+      .logo{
+        gap:12px;
+      }
+
+      .features-grid,
+      .product-grid,
+      .about-grid,
+      .footer-grid{
+        grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+      }
+
+      .brand-logos,
+      .supplier-logos{
+        gap:18px;
+      }
+
+      .brand-logos a,
+      .supplier-logos a{
+        min-width:160px;
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      .menu-toggle{
+        display:flex;
+      }
+
+      .nav-item{
+        width:100%;
+      }
+
+      .nav-item .dropdown-menu{
+        position:static;
+        opacity:1;
+        visibility:visible;
+        transform:none;
+        background:transparent;
+        box-shadow:none;
+        padding-left:14px;
+        margin-top:0;
+      }
+
+      .dropdown-menu a{
+        padding-left:32px;
+        color:#fff;
+      }
+
+      .dropdown-menu a:hover{
+        background:rgba(255,255,255,0.08);
+      }
+
+      .nav-links{
+        position:fixed;
+        inset:0;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        justify-content:flex-start;
+        gap:24px;
+        padding:100px 24px 24px;
+        background:#990000;
+        transform:translateY(-110%);
+        opacity:0;
+        visibility:hidden;
+        pointer-events:none;
+        transition:transform 0.35s ease, opacity 0.35s ease, visibility 0.35s ease;
+        z-index:1100;
+        box-shadow:0 14px 40px rgba(0,0,0,0.35);
+      }
+
+      body.nav-open .nav-links{
+        transform:translateY(0);
+        opacity:1;
+        visibility:visible;
+        pointer-events:auto;
+      }
+
+      .nav-links a,
+      .nav-links .dropdown-label{
+        width:100%;
+        justify-content:flex-start;
+        text-align:left;
+        font-size:18px;
+        padding:14px 0;
+      }
+
+      .nav-item .dropdown-menu a{
+        width:100%;
+        padding-left:32px;
+      }
+
+      .hero{
+        height:auto;
+        padding:100px 0 60px;
+      }
+
+      .hero h1{
+        font-size:36px;
+      }
+
+      .hero p{
+        font-size:16px;
+      }
+
+      .features-grid,
+      .product-grid,
+      .about-grid,
+      .footer-grid,
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-buttons{
+        flex-direction:column;
+        align-items:center;
+      }
+
+      .hero-buttons .btn,
+      .hero-buttons .btn-outline{
+        width:100%;
+        max-width:340px;
+      }
+
+      .section-title h2,
+      .about h2,
+      .cta h2{
+        font-size:34px;
+      }
+
+      .supplier-section{
+        margin-top:40px;
+      }
+
+      .brand-logos a,
+      .supplier-logos a{
+        width:100%;
+        justify-content:center;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+  <div id="age-gate-overlay">
+    <div class="age-gate-panel">
+      <h2>18+ Only</h2>
+      <p>Distriliq delivers premium alcoholic beverages. You must be 18 years or older to enter this website.</p>
+      <div class="age-gate-buttons">
+        <button id="age-gate-accept" class="age-gate-button age-gate-accept">I am 18+</button>
+        <button id="age-gate-deny" class="age-gate-button age-gate-deny">Leave Site</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="device-indicator" class="device-indicator" aria-live="polite"></div>
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="container navbar">
+
+      <div class="logo">
+        <a href="#home"><img src="assets/logos/Distriliq_Logo.png" alt="DistriLiq logo"></a>
+        <a href="coming-soon.html"><img src="assets/logos/Distrifoods-Logo-pic-removebg-preview.png" alt="Distrifoods logo"></a>
+      </div>
+
+      <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#brands">Brands</a>
+        <div class="nav-item">
+          <a class="dropdown-label" href="contact.html">Contact</a>
+          <div class="dropdown-menu" aria-label="Contact branches">
+            <a href="contact.html#pretoria">Pretoria</a>
+            <a href="contact.html#cape-town">Cape Town</a>
+            <a href="contact.html#george">George</a>
+            <a href="contact.html#rustenburg">Rustenberg</a>
+          </div>
+        </div>
+        <a href="careers.html">Careers</a>
+        <a href="#about">About</a>
+        <a href="#customer-form" class="btn">Become a Distriliq Customer</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home" aria-labelledby="hero-heading">
+
+    <div class="container">
+
+      <div class="hero-content">
+
+        <h1 id="hero-heading">
+          Premium <span class="gold">Liquor Distribution</span> For Modern Businesses
+        </h1>
+
+        <p>
+          At the core of our business is a commitment to delivering unmatched service, strategic expertise, and sustainable growth for our partners in the formal on-trade liquor sector. We specialize in optimizing brand performance through strong partner relationships, data-driven geographic analytics, and deep market insight that enables smarter distribution strategies. By combining industry expertise with tailored execution, we focus on strengthening our customers’ businesses by bringing like-minded partners and opportunities to their outlets with precision and reliability..
+        </p>
+
+        <div class="hero-buttons">
+          <a href="coming-soon.html" target="_blank" rel="noopener" class="btn">Browse Products</a>
+          <a href="#about" class="btn-outline">Learn More</a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PRODUCTS (moved here) -->
+  <!-- PRODUCTS removed (will be placed after Services) -->
+
+  <!-- FEATURES -->
+
+  <section class="features" id="features" aria-labelledby="features-heading">
+
+    <div class="container">
+
+      <div class="features-grid">
+
+        <div class="feature-box">
+          <h3>Premium Brands</h3>
+          <p>Top international and local liquor brands.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3>Fast Delivery</h3>
+          <p>Reliable nationwide delivery and logistics.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3>Wholesale Pricing</h3>
+          <p>Competitive pricing for hospitality businesses.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3>Dedicated Support</h3>
+          <p>Expert account management and service.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="customer-form-section" id="customer-form" aria-labelledby="customer-form-heading">
+    <div class="container">
+      <div class="section-title">
+        <h2 id="customer-form-heading">Become a Distriliq Customer</h2>
+        <p>Fill in your details and our team will contact you shortly.</p>
+      </div>
+      <form class="customer-form" action="mailto:info.george@distriliq.com" method="post" enctype="text/plain">
+        <div class="form-grid">
+          <label class="form-field">
+            <span>Your name</span>
+            <input type="text" name="Name" placeholder="e.g. Sipho Mbele" required>
+          </label>
+          <label class="form-field">
+            <span>Business name</span>
+            <input type="text" name="Business" placeholder="e.g. Cafe Ubuntu" required>
+          </label>
+          <label class="form-field">
+            <span>Phone number</span>
+            <input type="tel" name="Phone" placeholder="+27 82 123 4567" required>
+          </label>
+          <label class="form-field">
+            <span>Email address</span>
+            <input type="email" name="Email" placeholder="hello@business.co.za" required>
+          </label>
+          <label class="form-field">
+            <span>Branch</span>
+            <select id="branch-select" name="Branch" required>
+              <option value="">Select a branch</option>
+              <option value="george">George</option>
+              <option value="rustenberg">Rustenburg</option>
+              <option value="pretoria">Pretoria</option>
+              <option value="cape-town">Cape Town</option>
+            </select>
+          </label>
+          <label class="form-field full-width">
+            <span>What are you looking for?</span>
+            <textarea name="Message" rows="5" placeholder="Tell us about your business, order size, or target dates"></textarea>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Submit Request</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- PRODUCTS removed (moved below Services) -->
+
+  <!-- BRANDS -->
+
+  <section class="brands" id="brands" aria-labelledby="brands-heading">
+
+    <div class="container">
+
+      <h2 id="brands-heading">Trusted Brands</h2>
+
+      <div class="brand-logos">
+        <a href="https://www.jamesonwhiskey.com/" target="_blank" rel="noopener"><span class="logo-label">Jameson</span></a>
+        <a href="https://www.donjulio.com/" target="_blank" rel="noopener"><span class="logo-label">Don Julio</span></a>
+        <a href="https://www.johnniewalker.com/" target="_blank" rel="noopener"><span class="logo-label">Johnnie Walker</span></a>
+        <a href="https://www.moet.com/" target="_blank" rel="noopener"><span class="logo-label">Moët</span></a>
+        <a href="https://www.hennessy.com/" target="_blank" rel="noopener"><span class="logo-label">Hennessy</span></a>
+        <a href="https://www.bacardi.com/" target="_blank" rel="noopener"><span class="logo-label">Bacardi</span></a>
+        <a href="https://www.greygoose.com/" target="_blank" rel="noopener"><span class="logo-label">Grey Goose</span></a>
+        <a href="https://www.patrontequila.com/" target="_blank" rel="noopener"><span class="logo-label">Patrón</span></a>
+      </div>
+
+      <div class="supplier-section">
+        <h3>Promotions</h3>
+        <div class="supplier-logos">
+          <a href="https://www.diageo.com/" target="_blank" rel="noopener"><span class="logo-label">Diageo</span></a>
+          <a href="https://www.pernod-ricard.com/" target="_blank" rel="noopener"><span class="logo-label">Pernod Ricard</span></a>
+          <a href="https://www.sab.co.za/" target="_blank" rel="noopener"><span class="logo-label">South African Breweries</span></a>
+          <a href="https://www.distell.co.za/" target="_blank" rel="noopener"><span class="logo-label">Distell</span></a>
+          <a href="https://www.heinekencorporate.com/" target="_blank" rel="noopener"><span class="logo-label">Heineken</span></a>
+          <a href="https://www.ab-inbev.com/" target="_blank" rel="noopener"><span class="logo-label">AB InBev</span></a>
+          <a href="https://www.campari.com/" target="_blank" rel="noopener"><span class="logo-label">Campari Group</span></a>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="about" id="about" aria-labelledby="about-heading">
+
+    <div class="container">
+
+      <div class="about-grid">
+
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200" alt="Distriliq supply chain teamwork">
+
+        <div>
+
+          <h2 id="about-heading">Distriliq Your Distribution Partner</h2>
+
+          <p>
+            At DistriLiq, we believe that reliable service at the right price has to power to build stronger businesses. Our carefully curated collection feather some of the finest offerings from across South Africa and around the world, thoughtfully sourced from renowned distilleries, vineyards, breweries, and artisans who pour passion and craftsmanship into every bottle.  With our business model focusing on creating reliable service delivery matched with fixed pricing, our platform serves to create stability for our customers through daily delivery’s and pricing that does not change day to day.
+          </p>
+
+          <ul>
+            <li>Vast Distribution Network</li>
+            <li>Inventory Support</li>
+            <li>Hospitality partnerships</li>
+            <li>Bulk Order Management</li>
+            <li>Small & Large Businesses</li>
+          </ul>
+
+          <a href="#" class="btn">About Us</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <!-- PRODUCTS (moved below Services) -->
+
+  <section class="products" id="products" aria-labelledby="products-heading">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2 id="products-heading">Explore our premium selection of</h2>
+      </div>
+
+      <div class="product-grid">
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?q=80&w=1000" alt="Selection of premium whiskey bottles">
+          <div class="product-content">
+            <h3>Spirits</h3>
+            <p>Discover exceptional premium spirits with DistriLiq, from smooth whiskies and botanical gins to rich rums and refined vodkas, each selected for its quality and character. Whether celebrating with friends or enjoying a quiet moment, our collection is designed to elevate every occasion and create memorable experiences.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1609951651556-5334e2706168?q=80&w=1000" alt="Glass of red wine and wine bottles">
+          <div class="product-content">
+            <h3>Wine</h3>
+            <p>Explore our carefully curated wine collection, featuring bold reds, crisp whites, delicate rosés, and celebratory sparkling wines sourced from renowned vineyards around the world. Each bottle is selected to deliver exceptional quality, transforming every occasion into a memorable experience.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000" alt="Vodka bottles in a premium display">
+          <div class="product-content">
+            <h3>Beer</h3>
+            <p>Discover a premium selection of beers, from crisp lagers and rich ales to innovative craft brews, carefully chosen to suit every taste and occasion. Celebrating both brewing tradition and creativity, our range invites you to explore new favourites with every pour.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1000" alt="Craft beer bottles and glass on a bar counter">
+          <div class="product-content">
+            <h3>Ciders</h3>
+            <p>Discover our carefully selected cider collection, featuring crisp, refreshing flavours and expertly crafted blends for every taste. From bright and tangy to smooth and mellow, each cider is chosen to elevate every occasion with a memorable drinking experience.</p>
+          </div>
+        </div>
+
+
+          <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1000" alt="Craft beer bottles and glass on a bar counter">
+          <div class="product-content">
+            <h3>Soft Drinks & Mixers</h3>
+            <p>Complete every drink with our premium selection of mixers and soft drinks, from crisp tonic waters and artisanal ginger beers to refreshing sodas and botanical infusions. Carefully chosen to complement any beverage, our range adds the perfect finishing touch to every occasion.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="cta" id="contact" aria-labelledby="contact-heading">
+
+    <div class="container">
+
+      <h2 id="contact-heading">Ready To Grow Your Beverage Business?</h2>
+
+      <p style="margin-bottom:35px;">
+        Partner with South Africa’s premium liquor distributor.
+      </p>
+
+      <a href="#customer-form" class="btn">Become a Distriliq Customer</a>
+
+    </div>
+
+  </section>
+
+  <div class="chatbot-widget" aria-live="polite">
+    <button class="chatbot-button" id="chatbotToggle" aria-label="Open chat assistant">💬</button>
+    <div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-modal="false" aria-label="Distriliq chat assistant">
+      <div class="chatbot-header">
+        <div>
+          <h3>Distriliq Assistant</h3>
+          <p style="margin:4px 0 0;font-size:12px;color:#aaa;">Ask about orders, products, or delivery.</p>
+        </div>
+        <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">×</button>
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="chatbot-message bot">Hello, I’m Distriliq’s assistant. How can I help you today?</div>
+      </div>
+      <div class="chatbot-suggestions" id="chatbotSuggestions">
+        <button class="chatbot-suggestion">Place an order</button>
+        <button class="chatbot-suggestion">Delivery times</button>
+        <button class="chatbot-suggestion">Product range</button>
+      </div>
+      <div class="chatbot-input-bar">
+        <input class="chatbot-input" id="chatbotInput" type="text" placeholder="Type your question..." aria-label="Chat input" />
+        <button class="chatbot-submit" id="chatbotSend">Send</button>
+      </div>
+    </div>
+  </div>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+          <h4>Distriliq</h4>
+          <p>
+            We Deliver Daily.
+          </p>
+        </div>
+
+        <div>
+          <h4>Products</h4>
+          <ul>
+            <li>Wine</li>
+            <li>Beer</li>
+            <li>Spirits</li>
+            <li>Champagne</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Services</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li>George, South Africa</li>
+            <li>info.george@distriliq.com</li>
+            <li>+27 44 878 0777</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+          2026 Distriliq Group. All Rights Reserved. Terms of Service | Privacy Policy | Cookie Policy | T's & C's apply. OE & E. While stocks last.
+      </div>
+
+    </div>
+
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('mobile-open');
+        document.body.classList.toggle('nav-open', isOpen);
+        menuToggle.classList.toggle('open', isOpen);
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (document.body.classList.contains('nav-open')) {
+            navLinks.classList.remove('mobile-open');
+            document.body.classList.remove('nav-open');
+            menuToggle.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Open menu');
+          }
+        });
+      });
+    }
+
+    function detectMobileDevice() {
+      const ua = navigator.userAgent || '';
+      const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      const isMobile = mobileRegex.test(ua)
+        || (window.matchMedia && window.matchMedia('(pointer:coarse)').matches)
+        || (window.matchMedia && window.matchMedia('(max-width:700px)').matches);
+      document.body.classList.add(isMobile ? 'is-mobile' : 'is-desktop');
+      document.body.dataset.device = isMobile ? 'mobile' : 'desktop';
+
+      const indicator = document.getElementById('device-indicator');
+      if (indicator) {
+        indicator.textContent = isMobile ? 'Mobile device detected' : 'Desktop device detected';
+      }
+    }
+
+    function showBranchTeam(branchId) {
+      const panels = document.querySelectorAll('.team-location');
+      panels.forEach(panel => {
+        panel.classList.toggle('active', panel.id === branchId);
+      });
+
+      const instruction = document.querySelector('.services-instruction');
+      if (instruction) {
+        instruction.textContent = branchId
+          ? `Showing the ${branchId.replace(/-/g, ' ')} team.`
+          : 'Select a branch from Services above to view only that team.';
+      }
+
+      const target = document.getElementById(branchId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function initBranchFilter() {
+      const links = document.querySelectorAll('.dropdown-menu a');
+      links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        const branchId = href.slice(1);
+        link.addEventListener('click', event => {
+          event.preventDefault();
+          showBranchTeam(branchId);
+          history.replaceState(null, '', `#${branchId}`);
+        });
+      });
+
+      const initialHash = window.location.hash.slice(1);
+      if (initialHash) {
+        const validTarget = document.getElementById(initialHash);
+        if (validTarget && validTarget.classList.contains('team-location')) {
+          showBranchTeam(initialHash);
+        }
+      }
+    }
+
+    detectMobileDevice();
+    initBranchFilter();
+
+    const branchEmailMap = {
+      george: 'info.george@distriliq.com',
+      rustenberg: 'info.rustenburg@distriliq.com',
+      pretoria: 'info.pta@distriliq.com',
+      'cape-town': 'info.capetown@distriliq.com'
+    };
+
+    const customerForm = document.querySelector('.customer-form');
+    const branchSelect = document.getElementById('branch-select');
+
+    if (customerForm && branchSelect) {
+      customerForm.addEventListener('submit', function () {
+        const selectedBranch = branchSelect.value;
+        const email = branchEmailMap[selectedBranch] || branchEmailMap.george;
+        this.action = `mailto:${email}`;
+      });
+    }
+  </script>
+
+  <script>
+    (function(){
+      const overlay = document.getElementById('age-gate-overlay');
+      if (!overlay) return;
+      const accepted = localStorage.getItem('distriliqAgeConfirmed');
+      if (accepted === 'true') {
+        overlay.style.display = 'none';
+        return;
+      }
+      document.getElementById('age-gate-accept').addEventListener('click', function() {
+        localStorage.setItem('distriliqAgeConfirmed','true');
+        overlay.style.display = 'none';
+      });
+      document.getElementById('age-gate-deny').addEventListener('click', function() {
+        window.location.href = 'https://www.google.com';
+      });
+    })();
+  </script>
+
+  <script>
+    (function(){
+      const panel = document.getElementById('chatbotPanel');
+      const toggle = document.getElementById('chatbotToggle');
+      const closeButton = document.getElementById('chatbotClose');
+      const sendButton = document.getElementById('chatbotSend');
+      const input = document.getElementById('chatbotInput');
+      const messages = document.getElementById('chatbotMessages');
+      const suggestions = document.getElementById('chatbotSuggestions');
+
+      const responseMap = [
+        {
+          triggers: ['order', 'place an order', 'buy', 'purchase'],
+          reply: 'I can help you place an order for wine, beer, spirits or mixers. Please share your desired products, quantities, and delivery location so I can guide you through the next step.'
+        },
+        {
+          triggers: ['delivery', 'deliver', 'shipping', 'lead time'],
+          reply: 'Our team offers reliable daily delivery optimized for hospitality businesses. Let me know your area and preferred delivery window, and I can tell you how quickly we can reach you.'
+        },
+        {
+          triggers: ['product', 'range', 'wine', 'beer', 'spirits', 'cider', 'mixers'],
+          reply: 'We offer a broad selection of premium wines, spirits, beers, ciders, and mixers. If you need recommendations for cellar stock or event orders, I can suggest options based on your target audience.'
+        },
+        {
+          triggers: ['contact', 'contact details', 'email', 'phone'],
+          reply: 'You can reach our team at info.george@distriliq.com or +27 44 878 0777. If you prefer, I can also direct you to the customer onboarding form on this page.'
+        },
+        {
+          triggers: ['about', 'company', 'who are you', 'distriliq'],
+          reply: 'Distriliq is a specialist liquor distributor serving formal trade businesses with premium beverage brands, tailored logistics, and strong partner support. Our goal is to help your outlet run efficiently and grow through trusted supply.'
+        }
+      ];
+
+      const fallbackResponses = [
+        'I’m here to help. Could you please give me a little more detail about what you need—orders, delivery, or product guidance?',
+        'Let me know if you’re asking about orders, stock, or delivery, and I’ll point you in the right direction.',
+        'If you would like, I can connect you with our order team or help you complete the customer request form.'
+      ];
+
+      function addMessage(text, author) {
+        const bubble = document.createElement('div');
+        bubble.className = `chatbot-message ${author}`;
+        bubble.textContent = text;
+        messages.appendChild(bubble);
+        messages.scrollTop = messages.scrollHeight;
+      }
+
+      function getBotReply(text) {
+        const lower = text.toLowerCase();
+        for (const item of responseMap) {
+          if (item.triggers.some(trigger => lower.includes(trigger))) {
+            return item.reply;
+          }
+        }
+        return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+      }
+
+      function handleSend() {
+        const value = input.value.trim();
+        if (!value) return;
+        addMessage(value, 'user');
+        input.value = '';
+        setTimeout(() => {
+          addMessage(getBotReply(value), 'bot');
+        }, 550);
+      }
+
+      toggle.addEventListener('click', () => {
+        panel.classList.toggle('open');
+        if (panel.classList.contains('open')) {
+          input.focus();
+        }
+      });
+
+      closeButton.addEventListener('click', () => {
+        panel.classList.remove('open');
+        toggle.focus();
+      });
+
+      sendButton.addEventListener('click', handleSend);
+
+      input.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          handleSend();
+        }
+      });
+
+      suggestions.addEventListener('click', (event) => {
+        if (!event.target.closest('.chatbot-suggestion')) return;
+        const text = event.target.textContent;
+        input.value = text;
+        handleSend();
+      });
+    })();
+  </script>
+
+</body>
+</html>
