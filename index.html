@@ -176,7 +176,7 @@
     }
 
     .dropdown-label::after{
-      content:'â–¾';
+      content:'Gû+';
       font-size:10px;
       display:inline-block;
       margin-left:4px;
@@ -1295,7 +1295,7 @@
         </h1>
 
         <p>
-          At the core of our business is a commitment to delivering unmatched service, strategic expertise, and sustainable growth for our partners in the formal on-trade liquor sector. We specialize in optimizing brand performance through strong partner relationships, data-driven geographic analytics, and deep market insight that enables smarter distribution strategies. By combining industry expertise with tailored execution, we focus on strengthening our customersâ€™ businesses by bringing like-minded partners and opportunities to their outlets with precision and reliability..
+          At the core of our business is a commitment to delivering unmatched service, strategic expertise, and sustainable growth for our partners in the formal on-trade liquor sector. We specialize in optimizing brand performance through strong partner relationships, data-driven geographic analytics, and deep market insight that enables smarter distribution strategies. By combining industry expertise with tailored execution, we focus on strengthening our customersGÇÖ businesses by bringing like-minded partners and opportunities to their outlets with precision and reliability..
         </p>
 
         <div class="hero-buttons">
@@ -1406,11 +1406,11 @@
         <a href="https://www.jamesonwhiskey.com/" target="_blank" rel="noopener"><span class="logo-label">Jameson</span></a>
         <a href="https://www.donjulio.com/" target="_blank" rel="noopener"><span class="logo-label">Don Julio</span></a>
         <a href="https://www.johnniewalker.com/" target="_blank" rel="noopener"><span class="logo-label">Johnnie Walker</span></a>
-        <a href="https://www.moet.com/" target="_blank" rel="noopener"><span class="logo-label">MoÃ«t</span></a>
+        <a href="https://www.moet.com/" target="_blank" rel="noopener"><span class="logo-label">Mo+½t</span></a>
         <a href="https://www.hennessy.com/" target="_blank" rel="noopener"><span class="logo-label">Hennessy</span></a>
         <a href="https://www.bacardi.com/" target="_blank" rel="noopener"><span class="logo-label">Bacardi</span></a>
         <a href="https://www.greygoose.com/" target="_blank" rel="noopener"><span class="logo-label">Grey Goose</span></a>
-        <a href="https://www.patrontequila.com/" target="_blank" rel="noopener"><span class="logo-label">PatrÃ³n</span></a>
+        <a href="https://www.patrontequila.com/" target="_blank" rel="noopener"><span class="logo-label">Patr+¦n</span></a>
       </div>
 
       <div class="supplier-section">
@@ -1445,7 +1445,7 @@
           <h2 id="about-heading">Distriliq Your Distribution Partner</h2>
 
           <p>
-            At DistriLiq, we believe that reliable service at the right price has to power to build stronger businesses. Our carefully curated collection feather some of the finest offerings from across South Africa and around the world, thoughtfully sourced from renowned distilleries, vineyards, breweries, and artisans who pour passion and craftsmanship into every bottle.  With our business model focusing on creating reliable service delivery matched with fixed pricing, our platform serves to create stability for our customers through daily deliveryâ€™s and pricing that does not change day to day.
+            At DistriLiq, we believe that reliable service at the right price has to power to build stronger businesses. Our carefully curated collection feather some of the finest offerings from across South Africa and around the world, thoughtfully sourced from renowned distilleries, vineyards, breweries, and artisans who pour passion and craftsmanship into every bottle.  With our business model focusing on creating reliable service delivery matched with fixed pricing, our platform serves to create stability for our customers through daily deliveryGÇÖs and pricing that does not change day to day.
           </p>
 
           <ul>
@@ -1492,7 +1492,7 @@
           <img src="https://images.unsplash.com/photo-1609951651556-5334e2706168?q=80&w=1000" alt="Glass of red wine and wine bottles">
           <div class="product-content">
             <h3>Wine</h3>
-            <p>Explore our carefully curated wine collection, featuring bold reds, crisp whites, delicate rosÃ©s, and celebratory sparkling wines sourced from renowned vineyards around the world. Each bottle is selected to deliver exceptional quality, transforming every occasion into a memorable experience.</p>
+            <p>Explore our carefully curated wine collection, featuring bold reds, crisp whites, delicate ros+¬s, and celebratory sparkling wines sourced from renowned vineyards around the world. Each bottle is selected to deliver exceptional quality, transforming every occasion into a memorable experience.</p>
           </div>
         </div>
 
@@ -1534,7 +1534,7 @@
       <h2 id="contact-heading">Ready To Grow Your Beverage Business?</h2>
 
       <p style="margin-bottom:35px;">
-        Partner with South Africaâ€™s premium liquor distributor.
+        Partner with South AfricaGÇÖs premium liquor distributor.
       </p>
 
       <a href="#customer-form" class="btn">Become a Distriliq Customer</a>
@@ -1544,17 +1544,17 @@
   </section>
 
   <div class="chatbot-widget" aria-live="polite">
-    <button class="chatbot-button" id="chatbotToggle" aria-label="Open chat assistant">ðŸ’¬</button>
+    <button class="chatbot-button" id="chatbotToggle" aria-label="Open chat assistant">=ƒÆ¼</button>
     <div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-modal="false" aria-label="Distriliq chat assistant">
       <div class="chatbot-header">
         <div>
           <h3>Distriliq Assistant</h3>
           <p style="margin:4px 0 0;font-size:12px;color:#aaa;">Ask about orders, products, or delivery.</p>
         </div>
-        <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">Ã—</button>
+        <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">+ù</button>
       </div>
       <div class="chatbot-messages" id="chatbotMessages">
-        <div class="chatbot-message bot">Hello, Iâ€™m Distriliqâ€™s assistant. How can I help you today?</div>
+        <div class="chatbot-message bot">Hello, IGÇÖm DistriliqGÇÖs assistant. How can I help you today?</div>
       </div>
       <div class="chatbot-suggestions" id="chatbotSuggestions">
         <button class="chatbot-suggestion">Place an order</button>
@@ -1625,6 +1625,7 @@
   </footer>
 
   <script>
+    const MOBILE_FALLBACK_MAX_WIDTH = 720;
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -1653,17 +1654,35 @@
     function detectMobileDevice() {
       const ua = navigator.userAgent || '';
       const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-      const isMobile = mobileRegex.test(ua)
-        || (window.matchMedia && window.matchMedia('(pointer:coarse)').matches)
-        || (window.matchMedia && window.matchMedia('(max-width:700px)').matches);
-      document.body.classList.add(isMobile ? 'is-mobile' : 'is-desktop');
+      const isMobileUserAgent = mobileRegex.test(ua);
+      const hasTouch = navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
+      const isDesktopUserAgent = /Windows|Macintosh|Linux/i.test(ua);
+      const isSmallScreen = window.innerWidth <= MOBILE_FALLBACK_MAX_WIDTH;
+      const isMobile = isMobileUserAgent || (hasTouch && !isDesktopUserAgent && isSmallScreen);
+
+      document.body.classList.toggle('is-mobile', isMobile);
+      document.body.classList.toggle('is-desktop', !isMobile);
       document.body.dataset.device = isMobile ? 'mobile' : 'desktop';
 
       const indicator = document.getElementById('device-indicator');
       if (indicator) {
         indicator.textContent = isMobile ? 'Mobile device detected' : 'Desktop device detected';
       }
+
+      if (!isMobile) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (menuToggle && navLinks) {
+          menuToggle.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.setAttribute('aria-label', 'Open menu');
+          navLinks.classList.remove('mobile-open');
+          document.body.classList.remove('nav-open');
+        }
+      }
     }
+
+    window.addEventListener('resize', detectMobileDevice);
 
     function showBranchTeam(branchId) {
       const panels = document.querySelectorAll('.team-location');
@@ -1781,8 +1800,8 @@
       ];
 
       const fallbackResponses = [
-        'Iâ€™m here to help. Could you please give me a little more detail about what you needâ€”orders, delivery, or product guidance?',
-        'Let me know if youâ€™re asking about orders, stock, or delivery, and Iâ€™ll point you in the right direction.',
+        'IGÇÖm here to help. Could you please give me a little more detail about what you needGÇöorders, delivery, or product guidance?',
+        'Let me know if youGÇÖre asking about orders, stock, or delivery, and IGÇÖll point you in the right direction.',
         'If you would like, I can connect you with our order team or help you complete the customer request form.'
       ];
 
