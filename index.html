@@ -186,7 +186,7 @@
     .menu-toggle{
       display:none !important;
       position:relative;
-      z-index:1201;
+      z-index:1303;
       background:#Ff6600;
       border:1px solid #Ff6600;
       color:#111;
@@ -266,7 +266,7 @@
       visibility:hidden;
       pointer-events:none;
       transition:transform 0.35s ease, opacity 0.35s ease, visibility 0.35s ease;
-      z-index:1100;
+      z-index:1301;
       box-shadow:0 14px 40px rgba(0,0,0,0.15);
     }
 
@@ -281,6 +281,10 @@
       opacity:1;
       visibility:visible;
       pointer-events:auto;
+    }
+    /* Prevent background scroll when mobile nav is open */
+    body.is-mobile.nav-open {
+      overflow:hidden;
     }
 
     body.is-mobile .nav-links a,
