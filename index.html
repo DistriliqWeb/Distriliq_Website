@@ -176,7 +176,7 @@
     }
 
     .dropdown-label::after{
-      content:'Gû+';
+      content:'â–¾';
       font-size:10px;
       display:inline-block;
       margin-left:4px;
@@ -184,7 +184,7 @@
     }
 
     .menu-toggle{
-      display:none;
+      display:none !important;
       position:relative;
       z-index:1201;
       background:#Ff6600;
@@ -248,7 +248,7 @@
     }
 
     body.is-mobile .menu-toggle{
-      display:flex;
+      display:flex !important;
     }
 
     body.is-mobile .nav-links{
@@ -1107,124 +1107,54 @@
 
     }
 
-    @media(max-width:700px){
+    /* Mobile layout is handled by the body.is-mobile class and JavaScript device detection. */
 
-      .menu-toggle{
-        display:flex;
-      }
+    body.is-mobile .hero{
+      height:auto;
+      padding:100px 0 60px;
+    }
 
-      .nav-item{
-        width:100%;
-      }
+    body.is-mobile .hero h1{
+      font-size:36px;
+    }
 
-      .nav-item .dropdown-menu{
-        position:static;
-        opacity:1;
-        visibility:visible;
-        transform:none;
-        background:transparent;
-        box-shadow:none;
-        padding-left:14px;
-        margin-top:0;
-      }
+    body.is-mobile .hero p{
+      font-size:16px;
+    }
 
-      .dropdown-menu a{
-        padding-left:32px;
-        color:#fff;
-      }
+    body.is-mobile .features-grid,
+    body.is-mobile .product-grid,
+    body.is-mobile .about-grid,
+    body.is-mobile .footer-grid,
+    body.is-mobile .form-grid{
+      grid-template-columns:1fr;
+    }
 
-      .dropdown-menu a:hover{
-        background:rgba(255,255,255,0.08);
-      }
+    body.is-mobile .hero-buttons{
+      flex-direction:column;
+      align-items:center;
+    }
 
-      .nav-links{
-        position:fixed;
-        inset:0;
-        display:flex;
-        flex-direction:column;
-        align-items:flex-start;
-        justify-content:flex-start;
-        gap:24px;
-        padding:100px 24px 24px;
-        background:#990000;
-        transform:translateY(-110%);
-        opacity:0;
-        visibility:hidden;
-        pointer-events:none;
-        transition:transform 0.35s ease, opacity 0.35s ease, visibility 0.35s ease;
-        z-index:1100;
-        box-shadow:0 14px 40px rgba(0,0,0,0.35);
-      }
+    body.is-mobile .hero-buttons .btn,
+    body.is-mobile .hero-buttons .btn-outline{
+      width:100%;
+      max-width:340px;
+    }
 
-      body.nav-open .nav-links{
-        transform:translateY(0);
-        opacity:1;
-        visibility:visible;
-        pointer-events:auto;
-      }
+    body.is-mobile .section-title h2,
+    body.is-mobile .about h2,
+    body.is-mobile .cta h2{
+      font-size:34px;
+    }
 
-      .nav-links a,
-      .nav-links .dropdown-label{
-        width:100%;
-        justify-content:flex-start;
-        text-align:left;
-        font-size:18px;
-        padding:14px 0;
-      }
+    body.is-mobile .supplier-section{
+      margin-top:40px;
+    }
 
-      .nav-item .dropdown-menu a{
-        width:100%;
-        padding-left:32px;
-      }
-
-      .hero{
-        height:auto;
-        padding:100px 0 60px;
-      }
-
-      .hero h1{
-        font-size:36px;
-      }
-
-      .hero p{
-        font-size:16px;
-      }
-
-      .features-grid,
-      .product-grid,
-      .about-grid,
-      .footer-grid,
-      .form-grid{
-        grid-template-columns:1fr;
-      }
-
-      .hero-buttons{
-        flex-direction:column;
-        align-items:center;
-      }
-
-      .hero-buttons .btn,
-      .hero-buttons .btn-outline{
-        width:100%;
-        max-width:340px;
-      }
-
-      .section-title h2,
-      .about h2,
-      .cta h2{
-        font-size:34px;
-      }
-
-      .supplier-section{
-        margin-top:40px;
-      }
-
-      .brand-logos a,
-      .supplier-logos a{
-        width:100%;
-        justify-content:center;
-      }
-
+    body.is-mobile .brand-logos a,
+    body.is-mobile .supplier-logos a{
+      width:100%;
+      justify-content:center;
     }
 
   </style>
@@ -1295,7 +1225,7 @@
         </h1>
 
         <p>
-          At the core of our business is a commitment to delivering unmatched service, strategic expertise, and sustainable growth for our partners in the formal on-trade liquor sector. We specialize in optimizing brand performance through strong partner relationships, data-driven geographic analytics, and deep market insight that enables smarter distribution strategies. By combining industry expertise with tailored execution, we focus on strengthening our customersGÇÖ businesses by bringing like-minded partners and opportunities to their outlets with precision and reliability..
+          At the core of our business is a commitment to delivering unmatched service, strategic expertise, and sustainable growth for our partners in the formal on-trade liquor sector. We specialize in optimizing brand performance through strong partner relationships, data-driven geographic analytics, and deep market insight that enables smarter distribution strategies. By combining industry expertise with tailored execution, we focus on strengthening our customersGï¿½ï¿½ businesses by bringing like-minded partners and opportunities to their outlets with precision and reliability..
         </p>
 
         <div class="hero-buttons">
@@ -1406,11 +1336,11 @@
         <a href="https://www.jamesonwhiskey.com/" target="_blank" rel="noopener"><span class="logo-label">Jameson</span></a>
         <a href="https://www.donjulio.com/" target="_blank" rel="noopener"><span class="logo-label">Don Julio</span></a>
         <a href="https://www.johnniewalker.com/" target="_blank" rel="noopener"><span class="logo-label">Johnnie Walker</span></a>
-        <a href="https://www.moet.com/" target="_blank" rel="noopener"><span class="logo-label">Mo+½t</span></a>
+        <a href="https://www.moet.com/" target="_blank" rel="noopener"><span class="logo-label">Mo+ï¿½t</span></a>
         <a href="https://www.hennessy.com/" target="_blank" rel="noopener"><span class="logo-label">Hennessy</span></a>
         <a href="https://www.bacardi.com/" target="_blank" rel="noopener"><span class="logo-label">Bacardi</span></a>
         <a href="https://www.greygoose.com/" target="_blank" rel="noopener"><span class="logo-label">Grey Goose</span></a>
-        <a href="https://www.patrontequila.com/" target="_blank" rel="noopener"><span class="logo-label">Patr+¦n</span></a>
+        <a href="https://www.patrontequila.com/" target="_blank" rel="noopener"><span class="logo-label">Patr+ï¿½n</span></a>
       </div>
 
       <div class="supplier-section">
@@ -1445,7 +1375,7 @@
           <h2 id="about-heading">Distriliq Your Distribution Partner</h2>
 
           <p>
-            At DistriLiq, we believe that reliable service at the right price has to power to build stronger businesses. Our carefully curated collection feather some of the finest offerings from across South Africa and around the world, thoughtfully sourced from renowned distilleries, vineyards, breweries, and artisans who pour passion and craftsmanship into every bottle.  With our business model focusing on creating reliable service delivery matched with fixed pricing, our platform serves to create stability for our customers through daily deliveryGÇÖs and pricing that does not change day to day.
+            At DistriLiq, we believe that reliable service at the right price has to power to build stronger businesses. Our carefully curated collection feather some of the finest offerings from across South Africa and around the world, thoughtfully sourced from renowned distilleries, vineyards, breweries, and artisans who pour passion and craftsmanship into every bottle.  With our business model focusing on creating reliable service delivery matched with fixed pricing, our platform serves to create stability for our customers through daily deliveryGï¿½ï¿½s and pricing that does not change day to day.
           </p>
 
           <ul>
@@ -1492,7 +1422,7 @@
           <img src="https://images.unsplash.com/photo-1609951651556-5334e2706168?q=80&w=1000" alt="Glass of red wine and wine bottles">
           <div class="product-content">
             <h3>Wine</h3>
-            <p>Explore our carefully curated wine collection, featuring bold reds, crisp whites, delicate ros+¬s, and celebratory sparkling wines sourced from renowned vineyards around the world. Each bottle is selected to deliver exceptional quality, transforming every occasion into a memorable experience.</p>
+            <p>Explore our carefully curated wine collection, featuring bold reds, crisp whites, delicate ros+ï¿½s, and celebratory sparkling wines sourced from renowned vineyards around the world. Each bottle is selected to deliver exceptional quality, transforming every occasion into a memorable experience.</p>
           </div>
         </div>
 
@@ -1534,7 +1464,7 @@
       <h2 id="contact-heading">Ready To Grow Your Beverage Business?</h2>
 
       <p style="margin-bottom:35px;">
-        Partner with South AfricaGÇÖs premium liquor distributor.
+        Partner with South AfricaGï¿½ï¿½s premium liquor distributor.
       </p>
 
       <a href="#customer-form" class="btn">Become a Distriliq Customer</a>
@@ -1544,17 +1474,17 @@
   </section>
 
   <div class="chatbot-widget" aria-live="polite">
-    <button class="chatbot-button" id="chatbotToggle" aria-label="Open chat assistant">=ƒÆ¼</button>
+    <button class="chatbot-button" id="chatbotToggle" aria-label="Open chat assistant">ðŸ’¬</button>
     <div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-modal="false" aria-label="Distriliq chat assistant">
       <div class="chatbot-header">
         <div>
           <h3>Distriliq Assistant</h3>
           <p style="margin:4px 0 0;font-size:12px;color:#aaa;">Ask about orders, products, or delivery.</p>
         </div>
-        <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">+ù</button>
+        <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">Ã—</button>
       </div>
       <div class="chatbot-messages" id="chatbotMessages">
-        <div class="chatbot-message bot">Hello, IGÇÖm DistriliqGÇÖs assistant. How can I help you today?</div>
+        <div class="chatbot-message bot">Hello, I'm Distriliq's assistant. How can I help you today?</div>
       </div>
       <div class="chatbot-suggestions" id="chatbotSuggestions">
         <button class="chatbot-suggestion">Place an order</button>
@@ -1625,7 +1555,6 @@
   </footer>
 
   <script>
-    const MOBILE_FALLBACK_MAX_WIDTH = 720;
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -1653,12 +1582,8 @@
 
     function detectMobileDevice() {
       const ua = navigator.userAgent || '';
-      const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-      const isMobileUserAgent = mobileRegex.test(ua);
-      const hasTouch = navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
-      const isDesktopUserAgent = /Windows|Macintosh|Linux/i.test(ua);
-      const isSmallScreen = window.innerWidth <= MOBILE_FALLBACK_MAX_WIDTH;
-      const isMobile = isMobileUserAgent || (hasTouch && !isDesktopUserAgent && isSmallScreen);
+      const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i;
+      const isMobile = mobileRegex.test(ua);
 
       document.body.classList.toggle('is-mobile', isMobile);
       document.body.classList.toggle('is-desktop', !isMobile);
@@ -1800,8 +1725,8 @@
       ];
 
       const fallbackResponses = [
-        'IGÇÖm here to help. Could you please give me a little more detail about what you needGÇöorders, delivery, or product guidance?',
-        'Let me know if youGÇÖre asking about orders, stock, or delivery, and IGÇÖll point you in the right direction.',
+        'I\'m here to help. Could you please give me a little more detail about whether you need orders, delivery, or product guidance?',
+        'Let me know if you\'re asking about orders, stock, or delivery, and I\'ll point you in the right direction.',
         'If you would like, I can connect you with our order team or help you complete the customer request form.'
       ];
 
