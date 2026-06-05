@@ -350,6 +350,10 @@
       padding-left:32px;
     }
     body.is-mobile header { flex-direction:column; align-items:flex-start; gap:16px; }
+    /* hide header logos on mobile to keep header compact */
+    body.is-mobile .logo img {
+      display:none;
+    }
     body.is-mobile .form-grid { grid-template-columns:1fr; }
   </style>
 </head>
