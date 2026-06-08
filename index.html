@@ -942,6 +942,76 @@
       align-items:center;
     }
 
+    .about-slideshow{
+      position:relative;
+      border-radius:20px;
+      overflow:hidden;
+      background:#000;
+      box-shadow:0 20px 60px rgba(0,0,0,0.18);
+    }
+
+    .about-slideshow img{
+      width:100%;
+      display:block;
+      object-fit:cover;
+      aspect-ratio:4 / 3;
+      min-height:320px;
+    }
+
+    .slideshow-controls{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 16px;
+      pointer-events:none;
+    }
+
+    .slideshow-controls button{
+      pointer-events:auto;
+      border:none;
+      background:rgba(0,0,0,0.35);
+      color:#fff;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:24px;
+      line-height:1;
+      transition:background 0.2s ease;
+    }
+
+    .slideshow-controls button:hover{
+      background:rgba(255,255,255,0.18);
+    }
+
+    .slideshow-dots{
+      position:absolute;
+      left:50%;
+      bottom:16px;
+      transform:translateX(-50%);
+      display:flex;
+      gap:10px;
+      pointer-events:none;
+    }
+
+    .slideshow-dots button{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      border:none;
+      background:rgba(255,255,255,0.35);
+      cursor:pointer;
+      pointer-events:auto;
+      transition:background 0.2s ease, transform 0.2s ease;
+    }
+
+    .slideshow-dots button.active{
+      background:#Ff6600;
+      transform:scale(1.1);
+    }
+
     .about img{
       width:100%;
       border-radius:16px;
@@ -1384,7 +1454,14 @@
 
       <div class="about-grid">
 
-        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200" alt="Distriliq supply chain teamwork">
+        <div class="about-slideshow" aria-label="Pretoria branch photo slideshow">
+          <img id="aboutSlide" src="assets/Photos/Pretoria%20Photos/Front%20PTA.JPG" alt="Pretoria branch photo">
+          <div class="slideshow-controls">
+            <button type="button" id="aboutPrev" aria-label="Previous photo">‹</button>
+            <button type="button" id="aboutNext" aria-label="Next photo">›</button>
+          </div>
+          <div class="slideshow-dots" id="aboutSlideDots"></div>
+        </div>
 
         <div>
 
@@ -1685,6 +1762,141 @@
         const email = branchEmailMap[selectedBranch] || branchEmailMap.george;
         this.action = `mailto:${email}`;
       });
+    }
+
+    const aboutSlides = [
+      {
+        src: 'assets/Photos/Pretoria%20Photos/Front%20PTA.JPG',
+        caption: 'Front entrance at the Pretoria branch.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/gates%202.JPG',
+        caption: 'Gate entrance at the Pretoria facility.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/gates.JPG',
+        caption: 'Site access gates for our Pretoria distribution centre.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/Inside%201.JPG',
+        caption: 'Inside the Pretoria warehouse with stocked shelves.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/Inside%202.JPG',
+        caption: 'Warehouse operations at the Pretoria location.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/Inside%203.JPG',
+        caption: 'Loading and handling inside the Pretoria branch.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/Inside%204.JPG',
+        caption: 'Interior storage and logistics at Pretoria.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/Inside%206.JPG',
+        caption: 'Logistics staff preparing orders in Pretoria.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/Inside5.JPG',
+        caption: 'More Pretoria warehouse operations.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/outside%202%20top.JPG',
+        caption: 'Aerial view of the Pretoria site.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/outside%203%20top.JPG',
+        caption: 'Outdoor facility view from above.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/outside%20front%20angle.JPG',
+        caption: 'Front exterior angle of the Pretoria location.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/top%20view.JPG',
+        caption: 'Top view of the Pretoria premises.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/trucks%202.JPG',
+        caption: 'Trucks parked at the Pretoria branch.'
+      },
+      {
+        src: 'assets/Photos/Pretoria%20Photos/trucks.JPG',
+        caption: 'Delivery trucks ready to leave Pretoria.'
+      }
+    ];
+
+    const aboutSlideImage = document.getElementById('aboutSlide');
+    const aboutPrev = document.getElementById('aboutPrev');
+    const aboutNext = document.getElementById('aboutNext');
+    const aboutSlideDots = document.getElementById('aboutSlideDots');
+    let aboutCurrentSlide = 0;
+    let aboutSlideInterval;
+
+    function setAboutSlide(index) {
+      aboutCurrentSlide = (index + aboutSlides.length) % aboutSlides.length;
+      const slide = aboutSlides[aboutCurrentSlide];
+      if (aboutSlideImage) {
+        aboutSlideImage.src = slide.src;
+      }
+      const dots = aboutSlideDots ? aboutSlideDots.querySelectorAll('button') : [];
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle('active', dotIndex === aboutCurrentSlide);
+      });
+    }
+
+    function startAboutSlideshow() {
+      aboutSlideInterval = setInterval(() => {
+        setAboutSlide(aboutCurrentSlide + 1);
+      }, 7000);
+    }
+
+    function stopAboutSlideshow() {
+      if (aboutSlideInterval) {
+        clearInterval(aboutSlideInterval);
+      }
+    }
+
+    if (aboutSlideDots) {
+      aboutSlides.forEach((slide, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Slide ${index + 1}`);
+        dot.addEventListener('click', () => {
+          setAboutSlide(index);
+          stopAboutSlideshow();
+          startAboutSlideshow();
+        });
+        aboutSlideDots.appendChild(dot);
+      });
+    }
+
+    if (aboutPrev) {
+      aboutPrev.addEventListener('click', () => {
+        setAboutSlide(aboutCurrentSlide - 1);
+        stopAboutSlideshow();
+        startAboutSlideshow();
+      });
+    }
+
+    if (aboutNext) {
+      aboutNext.addEventListener('click', () => {
+        setAboutSlide(aboutCurrentSlide + 1);
+        stopAboutSlideshow();
+        startAboutSlideshow();
+      });
+    }
+
+    const aboutSlideshow = document.querySelector('.about-slideshow');
+    if (aboutSlideshow) {
+      aboutSlideshow.addEventListener('mouseenter', stopAboutSlideshow);
+      aboutSlideshow.addEventListener('mouseleave', startAboutSlideshow);
+    }
+
+    if (aboutSlideImage) {
+      setAboutSlide(0);
+      startAboutSlideshow();
     }
   </script>
 
