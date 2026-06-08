@@ -1705,28 +1705,41 @@
       const messages = document.getElementById('chatbotMessages');
       const suggestions = document.getElementById('chatbotSuggestions');
 
-      const responseMap = [
-        {
-          triggers: ['order', 'place an order', 'buy', 'purchase'],
-          reply: 'I can help you place an order for wine, beer, spirits or mixers. Please share your desired products, quantities, and delivery location so I can guide you through the next step.'
+      const branchInfo = {
+        pretoria: {
+          title: 'Gauteng Branch',
+          manager: 'Nokuthula Dube',
+          phone: '+27 12 803 2100',
+          email: 'info.pta@distriliq.com',
+          region: 'Pretoria / Gauteng'
         },
-        {
-          triggers: ['delivery', 'deliver', 'shipping', 'lead time'],
-          reply: 'Our team offers reliable daily delivery optimized for hospitality businesses. Let me know your area and preferred delivery window, and I can tell you how quickly we can reach you.'
+        'cape-town': {
+          title: 'Western Cape Branch',
+          manager: 'Simphiwe Ndlovu',
+          phone: '+27 21 386 0513',
+          email: 'info.capetown@distriliq.com',
+          region: 'Cape Town / Western Cape'
         },
-        {
-          triggers: ['product', 'range', 'wine', 'beer', 'spirits', 'cider', 'mixers'],
-          reply: 'We offer a broad selection of premium wines, spirits, beers, ciders, and mixers. If you need recommendations for cellar stock or event orders, I can suggest options based on your target audience.'
+        george: {
+          title: 'Southern Cape Branch',
+          manager: 'Zanele Khumalo',
+          phone: '+27 44 878 0777',
+          email: 'info.george@distriliq.com',
+          region: 'George / Southern Cape'
         },
-        {
-          triggers: ['contact', 'contact details', 'email', 'phone'],
-          reply: 'You can reach our team at info.george@distriliq.com or +27 44 878 0777. If you prefer, I can also direct you to the customer onboarding form on this page.'
-        },
-        {
-          triggers: ['about', 'company', 'who are you', 'distriliq'],
-          reply: 'Distriliq is a specialist liquor distributor serving formal trade businesses with premium beverage brands, tailored logistics, and strong partner support. Our goal is to help your outlet run efficiently and grow through trusted supply.'
+        rustenburg: {
+          title: 'North West Branch',
+          manager: 'Thandiswa Mokoena',
+          phone: '+27 14 596 5287',
+          email: 'info.rustenburg@distriliq.com',
+          region: 'Rustenburg / North West'
         }
-      ];
+      };
+
+      const orderTriggers = ['order', 'place an order', 'buy', 'purchase'];
+      const deliveryTriggers = ['delivery', 'deliver', 'shipping', 'lead time', 'delivery time'];
+      const productTriggers = ['product', 'range', 'wine', 'beer', 'spirits', 'cider', 'mixers'];
+      const contactTriggers = ['contact', 'contact details', 'email', 'phone', 'rep', 'account manager', 'manager'];
 
       const fallbackResponses = [
         'I\'m here to help. Could you please give me a little more detail about whether you need orders, delivery, or product guidance?',
@@ -1742,13 +1755,59 @@
         messages.scrollTop = messages.scrollHeight;
       }
 
+      function getBranchFromText(text) {
+        if (text.includes('pretoria') || text.includes('gauteng') || text.includes('johannesburg') || text.includes('pta')) {
+          return 'pretoria';
+        }
+        if (text.includes('cape town') || text.includes('capetown') || text.includes('western cape') || text.includes('cape-town')) {
+          return 'cape-town';
+        }
+        if (text.includes('george') || text.includes('southern cape')) {
+          return 'george';
+        }
+        if (text.includes('rustenburg') || text.includes('north west') || text.includes('northwest')) {
+          return 'rustenburg';
+        }
+        return null;
+      }
+
+      function formatBranchReply(branchId, topic) {
+        const branch = branchInfo[branchId];
+        return `For ${branch.region}, please contact your local account manager ${branch.manager}. They can help with ${topic}. Phone ${branch.phone}, Email ${branch.email}.`;
+      }
+
       function getBotReply(text) {
         const lower = text.toLowerCase();
-        for (const item of responseMap) {
-          if (item.triggers.some(trigger => lower.includes(trigger))) {
-            return item.reply;
+        const branchId = getBranchFromText(lower);
+
+        if (orderTriggers.some(trigger => lower.includes(trigger))) {
+          if (branchId) {
+            return formatBranchReply(branchId, 'orders and account setup');
           }
+          return 'To place an order, please contact your rep directly. If you don’t know who your rep is, tell me what region or branch you are in (for example Pretoria, Cape Town, George, or Rustenburg) and I’ll give you the right account manager from our contacts page.';
         }
+
+        if (deliveryTriggers.some(trigger => lower.includes(trigger))) {
+          if (branchId) {
+            return formatBranchReply(branchId, 'delivery timing and branch-specific service');
+          }
+          return 'Delivery times vary by branch. Please tell me your location or region, and I’ll give you the relevant account manager from contacts who can confirm the exact delivery availability for your area.';
+        }
+
+        if (productTriggers.some(trigger => lower.includes(trigger))) {
+          if (branchId) {
+            return formatBranchReply(branchId, 'product range and local portfolio support');
+          }
+          return 'Our product range varies by area. Please tell me what region you are in, and I’ll give you the relevant account manager from our contacts page who can help with the right local stock and brands.';
+        }
+
+        if (contactTriggers.some(trigger => lower.includes(trigger))) {
+          if (branchId) {
+            return formatBranchReply(branchId, 'your local contact and branch support');
+          }
+          return 'If you need branch contact details, please tell me your region or branch (Pretoria, Cape Town, George, or Rustenburg) and I’ll provide the correct account manager information from the contacts page.';
+        }
+
         return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
       }
 
