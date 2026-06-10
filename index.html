@@ -618,7 +618,7 @@
     /* BRANDS */
 
     .brands{
-      background:#08101f;
+      background:#999999;
       color:#fff;
       padding:90px 0;
       text-align:center;
@@ -628,6 +628,41 @@
       font-size:48px;
       margin-bottom:50px;
       font-family:'Playfair Display', serif;
+    }
+
+    .brand-logos-track-wrapper{
+      overflow:hidden;
+      width:100%;
+      position:relative;
+      padding:40px 0 60px;
+    }
+
+    .brand-logos-track{
+      display:flex;
+      gap:0;
+      align-items:center;
+      width:max-content;
+      animation:slideLogos 18s linear infinite;
+    }
+
+    .brand-logos-track img.brand-slide-img{
+      height:220px;
+      width:auto;
+      object-fit:contain;
+      display:block;
+      flex-shrink:0;
+      filter:none;
+      opacity:1;
+      padding:0 50px;
+    }
+
+    @keyframes slideLogos{
+      0%{
+        transform:translateX(0);
+      }
+      100%{
+        transform:translateX(calc(-100% / 2));
+      }
     }
 
     .brand-logos,
@@ -923,8 +958,8 @@
     }
 
     .supplier-section h3{
-      margin-bottom:28px;
-      font-size:28px;
+      margin-bottom:50px;
+      font-size:48px;
       font-family:'Playfair Display', serif;
       color:#fff;
     }
@@ -1418,15 +1453,13 @@
 
       <h2 id="brands-heading">Trusted Brands</h2>
 
-      <div class="brand-logos">
-        <a href="https://www.jamesonwhiskey.com/" target="_blank" rel="noopener"><span class="logo-label">Jameson</span></a>
-        <a href="https://www.donjulio.com/" target="_blank" rel="noopener"><span class="logo-label">Don Julio</span></a>
-        <a href="https://www.johnniewalker.com/" target="_blank" rel="noopener"><span class="logo-label">Johnnie Walker</span></a>
-        <a href="https://www.moet.com/" target="_blank" rel="noopener"><span class="logo-label">Moët</span></a>
-        <a href="https://www.hennessy.com/" target="_blank" rel="noopener"><span class="logo-label">Hennessy</span></a>
-        <a href="https://www.bacardi.com/" target="_blank" rel="noopener"><span class="logo-label">Bacardi</span></a>
-        <a href="https://www.greygoose.com/" target="_blank" rel="noopener"><span class="logo-label">Grey Goose</span></a>
-        <a href="https://www.patrontequila.com/" target="_blank" rel="noopener"><span class="logo-label">Patrón</span></a>
+      <div class="brand-logos-track-wrapper">
+        <div class="brand-logos-track" id="brandLogosTrack">
+          <img class="brand-slide-img" src="assets/logos/brandlogos.png" alt="Brand 1">
+          <img class="brand-slide-img" src="assets/logos/brandlogos.png" alt="Brand 2">
+          <img class="brand-slide-img" src="assets/logos/brandlogos.png" alt="Brand 3">
+          <img class="brand-slide-img" src="assets/logos/brandlogos.png" alt="Brand 4">
+        </div>
       </div>
 
       <div class="supplier-section">
