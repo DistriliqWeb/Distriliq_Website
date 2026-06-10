@@ -1625,6 +1625,23 @@
 
   </section>
 
+  <!-- PROMOTIONS -->
+
+  <section class="promotions" id="promotions" aria-labelledby="promotions-heading" style="padding:90px 0; background:#f8f8f8; text-align:center;">
+    <div class="container">
+      <h2 id="promotions-heading" style="font-size:52px; font-family:'Playfair Display', serif; margin-bottom:30px;">Promotions</h2>
+      <p style="color:#777; max-width:680px; margin:0 auto 36px; font-size:18px; line-height:1.7;">Tap into exclusive offers from our top suppliers. Select your branch to see the latest promotions available in your area.</p>
+      <button id="promotionsToggle" class="btn" style="padding:16px 34px; border-radius:999px; font-size:16px;">View Branch Promotions</button>
+
+      <div id="branchGrid" style="display:none; gap:24px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); margin-top:36px;">
+        <a href="coming-soon.html?branch=Pretoria" class="btn-outline" style="padding:18px 10px; border-radius:14px; font-weight:700; text-align:center; display:inline-flex; align-items:center; justify-content:center;">Distriliq Pretoria</a>
+        <a href="coming-soon.html?branch=Cape%20Town" class="btn-outline" style="padding:18px 10px; border-radius:14px; font-weight:700; text-align:center; display:inline-flex; align-items:center; justify-content:center;">Distriliq Cape Town</a>
+        <a href="coming-soon.html?branch=George" class="btn-outline" style="padding:18px 10px; border-radius:14px; font-weight:700; text-align:center; display:inline-flex; align-items:center; justify-content:center;">Distriliq George</a>
+        <a href="coming-soon.html?branch=Rustenburg" class="btn-outline" style="padding:18px 10px; border-radius:14px; font-weight:700; text-align:center; display:inline-flex; align-items:center; justify-content:center;">Distriliq Rustenburg</a>
+      </div>
+    </div>
+  </section>
+
   <section class="cta" id="contact" aria-labelledby="contact-heading">
 
     <div class="container">
@@ -2160,6 +2177,17 @@
         handleSend();
       });
     })();
+
+    const promotionsToggle = document.getElementById('promotionsToggle');
+    const branchGrid = document.getElementById('branchGrid');
+    if (promotionsToggle && branchGrid) {
+      promotionsToggle.addEventListener('click', function() {
+        const isHidden = branchGrid.style.display === 'none';
+        branchGrid.style.display = isHidden ? 'grid' : 'none';
+        this.textContent = isHidden ? 'Hide Branch Promotions' : 'View Branch Promotions';
+      });
+    }
+
   </script>
 
 </body>

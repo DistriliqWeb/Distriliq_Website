@@ -186,9 +186,10 @@
       <a href="index.html"><img src="assets/logos/Distriliq_Logo.png" alt="DistriLiq logo"></a>
       <a href="coming-soon.html"><img src="assets/logos/Distrifoods_Logo_New-removebg-preview.png" alt="Distrifoods logo"></a>
     </div>
-    <h1>Coming Soon</h1>
+    <h1 id="branchTitle">Coming Soon</h1>
     <p>Our products page is under construction. Check back soon for the full Distriliq product catalogue.</p>
     <p>Or let us know your email to be notified when it's ready!</p>
+    <a href="index.html" style="display:inline-block; background:#Ff6600; color:#000; padding:14px 28px; border-radius:12px; font-weight:700; text-decoration:none; margin-bottom:18px; margin-top:8px;">Back to Home</a>
     <form class="notify-form" id="notifyForm">
       <input class="notify-input" id="notifyEmail" type="email" placeholder="Enter your email address" required>
       <button class="notify-button" type="submit">Notify Me</button>
@@ -197,6 +198,17 @@
     <a href="index.html">Back to Home</a>
   </div>
   <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+    (function(){
+      const title = document.getElementById('branchTitle');
+      if (!title) return;
+      const params = new URLSearchParams(window.location.search);
+      const branch = params.get('branch');
+      if (branch) {
+        title.textContent = branch + ' Coming Soon';
+      }
+    })();
+  </script>
   <script>
     (function(){
       const overlay = document.getElementById('age-gate-overlay');
